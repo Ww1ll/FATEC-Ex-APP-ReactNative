@@ -1,8 +1,12 @@
 import { ScrollView, View } from "react-native";
 import ItemProduto from "../ItemProduto"
+import Produto from "@/app/Models/Produto";
 
-function ListaProdutos({ produtos }:
-    { produtos: { id: number, nome: string, preco: number }[] }) {
+interface PropListaProd{
+    produtos: Produto[];
+}
+
+const ListaProdutos:React.FC<PropListaProd> = ({ produtos }) => {
 
 
     return (

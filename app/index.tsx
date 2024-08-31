@@ -1,19 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import ListaProdutos from "./Components/Adaptadores/ListaProdutos";
+import axios from "axios";
 
- 
-const produtos = [
-  { id: 1, nome: "Coca-cola", preco: 5.5 },
-  { id: 2, nome: "Pepsi", preco: 7.5 },
-  { id: 3, nome: "Fanta", preco: 5.5 },
-  { id: 4, nome: "Dolly", preco: 9.5 }
-];
- 
- 
- 
+
 export default function Index() {
- let [contador, setContador]=useState(0);
+  let [contador, setContador]=useState(0);
+  let [produtos, setProdutos]=useState([]);
+  
+  useEffect(()=> {
+      carregaProduto();
+  }, [])
+//array vazio faz ele carregar uma vez
+
+
+  function carregaProduto(){
+    axios.get('https://api-docker-2t8m.onrender.com/api/produtos')
+      .then((resp)=>{
+        setProdutos(resp.data);
+      })
+  }
+  
   return (
     <View
       style={estilo.container}
@@ -23,7 +30,8 @@ export default function Index() {
 
     <Button title={`Clicado ${contador}`} onPress={clicarBotao}></Button>
  
- 
+    <CadastroProduto/>
+
     </View>
   );
   function clicarBotao(){
