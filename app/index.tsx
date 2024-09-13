@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import ListaProdutos from "./Components/Adaptadores/ListaProdutos";
 import axios from "axios";
+import CadastroProduto from "./Components/Adaptadores/CadastroProduto";
 
 
 export default function Index() {
